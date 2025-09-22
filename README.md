@@ -176,7 +176,7 @@ No se encontraron valores perdidos en ninguna de las columnas:
 
 ## 📁 Estructura del proyecto
 
-- `Rosales_Internationalresults_handball.ipynb`: notebook principal con análisis y visualizaciones.
+- `Rosales_Internationalresults_handball.ipynb`: notebook principal con análisis y visualizaciones https://colab.research.google.com/drive/1HCWJG1xg51Bk8JSu1iLII-78TraJrQ1t?usp=sharing 
 - `README.md`: descripción del proyecto.
 - `Handball_W_InternationalResults.csv`: dataset utilizado.
 
