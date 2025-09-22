@@ -21,33 +21,138 @@ Se han generado visualizaciones que incluyen:
 
 - Gráficos de barras con ranking de goles totales por equipo entre 2020 y 2023.
 
-### Calcular goles totales por equipo
+```python
+# Calcular goles totales por equipo
 total_goals = goals_by_team.groupby("Team")["Goals"].sum().reset_index()
 
-### Ordenar por goles descendente
+# Ordenar por goles descendente
 total_goals = total_goals.sort_values(by="Goals", ascending=False)
 
-### Crear gráfico de barras
+# Crear gráfico de barras
 fig = px.bar(
     total_goals,
     x="Team",
     y="Goals",
     title="Ranking de Goles Totales por Equipo 2020-2023",
     labels={"Team": "Equipo", "Goals": "Goles Totales"}
+
+
+fig.show()
+```
+
+
+- Gráficos de cajas con el top 1o de diferencia de goles por equipo.
+
+```python
+# Limpiar los nombres de las columnas
+df.columns = df.columns.str.strip()
+
+# Determinar el equipo ganador por partido
+df["WinningTeam"] = df.apply(
+    lambda row: row["TeamA"] if row["ScoreA"] > row["ScoreB"]
+    else row["TeamB"] if row["ScoreB"] > row["ScoreA"]
+    else "Draw", axis=1
+)
+
+# Calcular la diferencia de goles
+df["GoalDifference"] = abs(df["ScoreA"] - df["ScoreB"])
+
+# Filtrar partidos ganados (excluir empates)
+df_wins = df[df["WinningTeam"] != "Draw"]
+
+# Calcular el número de victorias por equipo
+victory_counts = df_wins["WinningTeam"].value_counts().nlargest(10).index.tolist()
+
+# Filtrar los partidos ganados por los 10 equipos con más victorias
+df_top_wins = df_wins[df_wins["WinningTeam"].isin(victory_counts)]
+
+# Crear gráfico de cajas
+fig = px.box(
+    df_top_wins,
+    x="WinningTeam",
+    y="GoalDifference",
+    title="Distribución de la Diferencia de Goles por Equipo (Top 10 en Victorias)",
+    labels={"WinningTeam": "Equipo Ganador", "GoalDifference": "Diferencia de Goles"}
 )
 
 fig.show()
-  
-- Gráficos de cajas con el top 1o de diferencia de goles por equipo.
+```
+
 - Visualizaciones multivariadas que combinan equipo, goles y tipo de victoria.
+
+```python
+# Limpiar los nombres de las columnas
+df.columns = df.columns.str.strip()
+
+# Determinar el equipo ganador por partido
+df["WinningTeam"] = df.apply(
+    lambda row: row["TeamA"] if row["ScoreA"] > row["ScoreB"]
+    else row["TeamB"] if row["ScoreB"] > row["ScoreA"]
+    else "Draw", axis=1
+)
+
+# Filtrar partidos con ganador (excluir empates)
+df_wins = df[df["WinningTeam"] != "Draw"]
+
+# Contar victorias por equipo y torneo
+victory_counts = df_wins.groupby(["TournamentName", "WinningTeam"]).size().reset_index(name="Victories")
+
+# Crear gráfico tipo treemap
+fig = px.treemap(
+    victory_counts,
+    path=["TournamentName", "WinningTeam"],
+    values="Victories",
+    title="Cantidad de Victorias por Equipo según Torneo"
+)
+
+fig.show()
+```
+- Visualizaciones en un treemap.
+
+```python
+import pandas as pd
+import plotly.express as px
+
+# Cargar el archivo CSV
+df = pd.read_csv (r"/content/drive/MyDrive/Handball_W_InternationalResults.csv")
+
+# Limpiar los nombres de las columnas
+df.columns = df.columns.str.strip()
+
+# Determinar el equipo ganador por partido
+df["WinningTeam"] = df.apply(
+    lambda row: row["TeamA"] if row["ScoreA"] > row["ScoreB"]
+    else row["TeamB"] if row["ScoreB"] > row["ScoreA"]
+    else "Draw", axis=1
+)
+
+# Filtrar partidos con ganador (excluir empates)
+df_wins = df[df["WinningTeam"] != "Draw"]
+
+# Contar victorias por equipo y torneo
+victory_counts = df_wins.groupby(["TournamentName", "WinningTeam"]).size().reset_index(name="Victories")
+
+# Crear gráfico tipo treemap
+fig = px.treemap(
+    victory_counts,
+    path=["TournamentName", "WinningTeam"],
+    values="Victories",
+    title="Cantidad de Victorias por Equipo según Torneo"
+)
+
+fig.show()
+```
+
+
 
 Además, se han creado nuevas columnas en el dataset:
 
 - `Resultado Partido`: nombre del equipo ganador o empate.
 - `Diferencia de Goles`: diferencia absoluta entre los goles anotados por cada equipo.
-- `Resultado de la cantidad de victorias por equipo`: Calcular el número de victorias por equipo
+- `Resultado de la cantidad de victorias por equipo`: Calcular el número de victorias por equip
 
-  ###  Missing values
+
+  ###   Missing values
 No se encontraron valores perdidos en ninguna de las columnas:
 
  - Date              0
