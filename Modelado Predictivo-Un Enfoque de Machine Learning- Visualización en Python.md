@@ -1,8 +1,37 @@
- # Primer entrega - Visualizaciones en Python
+ # Entrega proyecto final - Modelado Predictivo - Un Enfoque de Machine Learning en Python
 
 ## 📘 Abstract
 
-Este proyecto analiza los resultados de partidos internacionales de handball femenino utilizando un dataset que contiene información sobre equipos, fechas, sedes, torneos y resultados numéricos. El objetivo principal es explorar patrones de rendimiento entre equipos, identificar tendencias en los resultados y evaluar la competitividad de los encuentros. A través de visualizaciones univariadas, bivariadas y multivariadas, se busca responder preguntas clave sobre el comportamiento de los equipos en distintos torneos y años. Además, se realiza un diagnóstico de valores perdidos y se enriquecen los datos con nuevas variables como el equipo ganador, la diferencia de goles y el tipo de victoria. Este análisis permite comprender mejor la dinámica del handball femenino internacional y ofrece una base para futuras investigaciones deportivas.
+Este proyecto analiza los resultados de partidos internacionales de handball femenino utilizando un dataset que contiene información sobre equipos, fechas, sedes, torneos y resultados numéricos. El objetivo principal es explorar patrones de rendimiento entre equipos, identificar tendencias en los resultados y evaluar la competitividad de los encuentros. Para ello nos propusimos varios pasos:
+1. Definición del topico a chequear
+• Objetivo claro: Predecir qué equipo (TeamA o TeamB) será el ganador (WinningTeam) de un partido de balonmano internacional femenino.
+• Métricas de Éxito: Dado que es un problema de clasificación, las métricas clave son la Precisión (Accuracy), la Sensibilidad (Recall), el F1-Score, o el AUC-ROC.
+
+2. Preparación de Datos
+El dataset Handball_W_InternationalResults_with_Winner.csv contiene columnas como Date, TeamA, TeamB, ScoreA, ScoreB, Sex, TournamentName, year, Venue y WinningTeam, por lo que se procedió a realizar una limpieza de Datos con lo que el Data Cleaning es esencial para remover nulos, outliers e inconsistencias.
+Para la carga de datos se utilizó la librería pandas (importada como pd) para cargar el archivo, dado que Pandas es fundamental para el manejo de datos en Python.
+Para los valores Faltantes (NaN)se realizó una limpieza de datos.
+Para los outliers: Se utilizo el Z-score para eliminar outliers si superan un umbral de 3 desviaciones estándar.
+
+3. Transformación de datos
+La transformación de datos es necesaria para que las variables categóricas o numéricas sean adecuadas para el modelado
+
+En cuanto a Variables Categóricas (Codificación) como TeamA, TeamB, TournamentName y Venue se convirtieron a formato numérico, ya que los modelos de ML generalmente requieren entradas numéricas.
+
+
+    
+    ◦ Codificación One Hot Encoding: Recomendada para variables con pocas categorías. Se podría usar para Venue o TournamentName1:
+    ◦ Codificación LabelEncoder/OrdinalEncoder: Podría usarse para las variables de equipo o si se considera que existe un orden inherente2022.
+2. Normalización/Estandarización de Variables Numéricas: Las variables numéricas, como ScoreA y ScoreB, deben ser escaladas, especialmente si el algoritmo elegido es sensible a la magnitud de los datos (como SVM o Regresión Lineal)2....
+    ◦ La Estandarización (Z-Score Scaling) es recomendada para algoritmos que asumen distribución gaussiana (ej. SVM, Regresión Lineal) y cuando existen outliers2.
+    ◦ La Normalización (Min-Max Scaling) es más adecuada si los datos tienen límites conocidos (ej. imágenes RGB23) o para algoritmos como Redes Neuronales o K-NN224.
+
+
+
+
+
+
+
 
 ## ❓ Preguntas e hipótesis de interés
 
