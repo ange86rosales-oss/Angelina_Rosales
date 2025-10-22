@@ -424,7 +424,7 @@ En resumen, el modelo cumple razonablemente los supuestos básicos de OLS para e
 
 ```
 
-# Feature Selection & Machine Learning
+## Feature Selection & Machine Learning
 
 Se realizo la selección de variables con SelectKBest usando la función estadística f_regression para predecir la variable objetivo ScoreA. Aquí está el ranking de importancia:
 
