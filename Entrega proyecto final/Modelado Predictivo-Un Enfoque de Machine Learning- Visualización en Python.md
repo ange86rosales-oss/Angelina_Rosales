@@ -1,10 +1,24 @@
- # Entrega proyecto final - Modelado Predictivo - Un Enfoque de Machine Learning en Python
+ # Modelado Predictivo de la performance de las selecciones internacionales de handball femenino: Un Enfoque de Machine Learning para analizar la predictibilidad de las próximas selecciones triunfadoras.
 
-## 📘 Abstract
+## 📘 Contexto
+
+Desde el año 2010, el handball femenino mundial ha vivido una transformación marcada por la intensidad competitiva, el surgimiento de nuevas potencias y la consolidación de selecciones históricas. Europa mantuvo su hegemonía, pero también hubo sorpresas que rompieron el molde.
+Noruega, con su estilo veloz y técnico, se consagró como una de las selecciones más dominantes, alzando el trofeo en varias ocasiones y manteniéndose siempre cerca del podio. Francia, por su parte, fue construyendo una generación dorada que alcanzó la gloria tanto en mundiales como en los Juegos Olímpicos, donde logró el oro en Tokio 2020. Países Bajos también dejó su huella, conquistando el mundo en 2019 con una actuación memorable en Japón.
+Pero no todo fue Europa. En 2013, Brasil sorprendió al mundo entero al coronarse campeona en su propia tierra, demostrando que el talento sudamericano podía competir al más alto nivel. Esa victoria fue histórica, no solo por el título, sino por lo que representó para el desarrollo del deporte en América Latina.
+En los Juegos Olímpicos, el handball femenino también vivió momentos intensos. Rusia, compitiendo bajo la bandera del Comité Olímpico Ruso, se llevó el oro en Río 2016, mientras que Noruega y Francia se mantuvieron como protagonistas constantes. La edición de Tokio, celebrada en 2021 por la pandemia, fue testigo de la consagración francesa, que venció a Rusia en una final cargada de emoción.
+A lo largo de estos años, el deporte se volvió más global. Cuba, por ejemplo, logró en 2025 una clasificación histórica al Mundial tras ganar el campeonato regional de América del Norte y el Caribe, mostrando que el crecimiento del handball femenino no se limita a Europa.
+Cada torneo, cada medalla, cada partido disputado en estos quince años ha sido parte de una narrativa que habla de esfuerzo, evolución y pasión. El handball femenino mundial se ha convertido en un espectáculo de alto nivel, donde la técnica, la táctica y el corazón se combinan para ofrecer historias inolvidables. 
+En este sentido, analizaremos con datos respaldatorios, las tendencias observadas en los torneos más importantes. Europa seguirá  manteniendo su hegemonía? 
+
 
 ## 🎯 Objetivo del Proyecto
 
-Objetivo de Investigación: Este estudio desarrolla un framework predictivo integral para analizar los determinantes resultados de partidos internacionales de handball femenino utilizando el dataset Handball_W_InternationalResults.csv el cual contiene información sobre equipos, fechas, sedes, torneos y resultados numéricos del pasado cuyo objetivo principal es explorar patrones de rendimiento entre equipos, identificar tendencias en los resultados, evaluar la competitividad de los encuentros de cara al futuro como también se busca responder preguntas relevantes sobre la competitividad de los equipos, la evolución de los resultados a lo largo del tiempo y las características de las victorias en los  distintos torneos. Para ello nos propusimos varios pasos que detallaremos precedentemente.
+Este estudio desarrolla un framework predictivo integral para analizar los proximos resultados de partidos internacionales de handball femenino, para el cual analizaremos los partidos disputados desde 2010 al 2023 en los que se han disputado más de 2800 partidos oficiales lo que muestra una actividad constante y creciente lo que nos permite ver cómo el handball femenino ha crecido en volumen, diversidad y competitividad. Europa sigue siendo el núcleo, pero otras regiones están ganando terreno. 
+
+
+Las selecciones más exitosas no solo acumulan victorias, sino que también han sabido mantenerse en la élite durante más de una década. nos permite ver cómo el handball femenino ha crecido en volumen, diversidad y competitividad. Europa sigue siendo el núcleo, pero otras regiones están ganando terreno. Las selecciones más exitosas no solo acumulan victorias, sino que también han sabido mantenerse en la élite durante más de una década
+
+
 
 ## ❓ Preguntas e hipótesis de interés
 
