@@ -189,8 +189,6 @@ print("Diagnóstico de valores perdidos por columna:")
 print(missing_values)
 ```
 
-
-
 #### Este código calcula qué equipo tiene la mejor tasa de victorias en cada torneo y muestra los resultados en una tabla.
 ```Phyton
 import pandas as pd
@@ -408,7 +406,6 @@ fig = px.scatter(
 
 fig.show()
 ```
-
 
 
 #### Aqui realizamos un análisis predictivo utilizando regresión lineal para estimar la cantidad total de goles anotados basándose en el año y el nombre del torneo.**
@@ -939,24 +936,40 @@ fig.show()
 
 ```
 
+##  ✅ Conclusiones y recomendaciones 
+
+#### Supremacía europea confirmada en los datos
+
+El análisis realizado sobre el dataset histórico de resultados internacionales de handball femenino confirma que Europa mantiene su supremacía en este deporte. Los equipos europeos como Noruega, Francia, Dinamarca, Rusia y Hungría aparecen de manera consistente entre los más exitosos en torneos globales, especialmente en el World Championship y el European Championship.
+En los rankings y proyecciones realizadas con Random Forest, Noruega principalmente aparecen entre los equipos con mayor número de victorias proyectadas para 2025.
+
+#### Modelos predictivos y métricas
+
+El modelo Random Forest Regressor aplicado sobre las variables del dataset (equipos, torneo, año, goles del rival) logró un R² entre 0.43 y 0.53, con MAE ≈ 4 goles. Esto indica que el modelo captura tendencias históricas, aunque no predice con alta precisión debido a la falta de variables contextuales (ranking, localía, fase del torneo).
+
+#### Selección de características (SelectKBest)
+
+Las variables más relevantes para explicar los goles fueron:
+TeamA, TeamB, ScoreB, TournamentName, year, Venue, WinningTeam.
+La columna Sex no aportó valor predictivo, lo que confirma que el género no influye en este contexto porque todos los partidos son femeninos.
 
 
 
+#### Importancia de variables en Random Forest
+
+ScoreB (goles del equipo rival) es el predictor más influyente. Factores como torneo y año también tienen peso, lo que refleja que el contexto histórico y competitivo importa.
+
+#### 📌Mi hipótesis “Europa seguirá con su supremacía” se sostiene porque:
+
+Los datos históricos muestran dominio europeo en títulos y victorias, las proyecciones del modelo para 2025 ubican a equipos europeos en la cima.
+La tendencia se mantiene estable en los últimos 20 años según el dataset. No obstante, se observa crecimiento en otras regiones, lo que sugiere que, aunque la supremacía europea se mantiene, la competencia global podría intensificarse en el futuro ya que se evidencia un marcado crecimiento en otras regiones por ejemplo Angola en África y  Brasil en América
 
 
+#### Se podría agregar:
 
-
-
-
-
-
-
-
-
-
-
-
-
+- Evidencia gráfica: evolución histórica de victorias por continente.
+- Mención de equipos europeos más dominantes (Noruega, Francia y por fuera Rusia).
+- Limitaciones: aunque Europa domina, hay crecimiento en otras regiones.
  
 
 ## 🛠️ Herramientas utilizadas
@@ -973,7 +986,7 @@ fig.show()
 
 ## 📁 Estructura del proyecto
 
-- `Rosales_Internationalresults_handball.ipynb`: notebook principal con análisis y visualizaciones https://colab.research.google.com/drive/1HCWJG1xg51Bk8JSu1iLII-78TraJrQ1t?usp=sharing 
+- `ProyectoParteIII+ROSALES.ipynb`: notebook principal con análisis y visualizaciones [(https://colab.research.google.com/github/ange86rosales-oss/Angelina_Rosales/blob/main/Entrega%20proyecto%20final/ProyectoParteIII%2BROSALES.ipynb)]
 - `README.md`: descripción del proyecto.
 - `Handball_W_InternationalResults.csv`: dataset utilizado.
 
