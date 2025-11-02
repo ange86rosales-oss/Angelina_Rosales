@@ -12,7 +12,7 @@ Cada torneo, cada medalla, cada partido disputado en estos quince años ha sido 
 
 ## 🎯 Objetivo e hipótesis del proyecto
 
-Este estudio desarrolla un framework predictivo integral para analizar los proximos resultados de partidos internacionales de handball femenino, para el cual analizaremos los partidos disputados desde 2010 al 2023 en los que se han disputado más de 2800 partidos oficiales lo que muestra una actividad constante y creciente lo que nos permite ver cómo el handball femenino ha crecido en volumen, diversidad y competitividad. Europa sigue siendo el núcleo, pero otras regiones están ganando terreno tanto en  en volumen, diversidad y competitividad. 
+Este estudio desarrolla un framework predictivo integral para analizar los proximos resultados de partidos internacionales de handball femenino, para el cual analizaremos los partidos disputados desde 2010 al 2023 en los que se han disputado más de 2800 partidos oficiales lo que muestra una actividad constante y creciente lo que nos permite ver cómo el handball femenino ha crecido en volumen, diversidad y competitividad. Europa sigue siendo el núcleo, pero otras regiones están pisando fuerte y ganando terreno. 
 Dicho todo lo anterior, analizaremos las tendencias observadas en los torneos más importantes
 
 En este sentido, analizaremos con datos respaldatorios, las tendencias observadas en los torneos más importantes a partir del 2024 y veremos si Europa seguirá  manteniendo su supremacia hegemónica de cara al mundial a disputarse en noviembre 2025.
