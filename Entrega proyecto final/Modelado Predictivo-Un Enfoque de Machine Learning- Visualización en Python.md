@@ -408,7 +408,7 @@ fig.show()
 ```
 
 
-#### Aqui realizamos un análisis predictivo utilizando regresión lineal para estimar la cantidad total de goles anotados basándose en el año y el nombre del torneo.**
+#### Aqui realizamos un análisis predictivo utilizando regresión lineal para estimar la cantidad total de goles anotados basándose en el año y el nombre del torneo.
 ```Phyton
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -450,7 +450,7 @@ print("Predicción WorldChampionship 2025:", pred_example)
 
 
 
-#### Aqui realizamos un análisis de regresión lineal utilizando la librería statsmodels para entender cómo el año y el tipo de torneo influyen en la cantidad total de goles anotados.**
+#### Aqui realizamos un análisis de regresión lineal utilizando la librería statsmodels para entender cómo el año y el tipo de torneo influyen en la cantidad total de goles anotados.
 ```Phyton
 import pandas as pd
 import statsmodels.api as sm
@@ -764,7 +764,6 @@ print(f"Validation -> R²: {r2_val:.4f}, RMSE: {rmse_val:.4f}, MAE: {mae_val:.4f
 print(f"Test -> R²: {r2_test:.4f}, RMSE: {rmse_test:.4f}, MAE: {mae_test:.4f}")
 
 ```
-
 
 
 #### Aqui dividimos el dataset en tres conjuntos para entrenar el modelo en datos conocidos, validar para ajustar hiperparámetros y evitar sobreajuste y para medir el rendimiento en datos no vistos.
