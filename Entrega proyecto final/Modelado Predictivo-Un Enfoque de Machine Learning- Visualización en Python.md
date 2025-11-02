@@ -1,4 +1,4 @@
- # Modelado Predictivo de la performance de las selecciones internacionales de handball femenino: Un Enfoque de Machine Learning para analizar la predictibilidad de las próximas selecciones triunfadoras.
+ # Modelado Predictivo de la performance de las selecciones internacionales de handball femenino: Un Enfoque de Machine Learning para analizar la predictibilidad de las próxima selección triunfadora.
 
 ## 📘 Contexto
 
