@@ -987,6 +987,6 @@ La tendencia se mantiene estable en los últimos 20 años según el dataset. No 
 ## 📁 Estructura del proyecto
 
 - `ProyectoParteIII+ROSALES.ipynb`: notebook principal con análisis y visualizaciones [(https://colab.research.google.com/github/ange86rosales-oss/Angelina_Rosales/blob/main/Entrega%20proyecto%20final/ProyectoParteIII%2BROSALES.ipynb)]
-- `README.md`: descripción del proyecto.
-- `Handball_W_InternationalResults.csv`: dataset utilizado.
+- `Modelado Predictivo-Un Enfoque de Machine Learning- Visualización en Python.md`: descripción del proyecto.
+- `Handball_W_InternationalResults_with_Winner.csv`: dataset utilizado.
 
