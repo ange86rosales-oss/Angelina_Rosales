@@ -31,7 +31,7 @@ En este sentido, analizaremos con datos respaldatorios, las tendencias observada
 
 ## 📁 Estructura del proyecto
 
-- `ProyectoParteIII+ROSALES.ipynb`: notebook principal con análisis y visualizaciones [(https://colab.research.google.com/github/ange86rosales-oss/Angelina_Rosales/blob/main/Entrega%20proyecto%20final/ProyectoParteIII%2BROSALES.ipynb)]
+- `ProyectoParteIII+ROSALES.ipynb`: notebook principal con análisis y visualizaciones [(https://colab.research.google.com/gist/ange86rosales-oss/76ad5a68747e5aabee801125610270e0/proyectoparteiii_rosales.ipynb)]
 - `Modelado Predictivo-Un Enfoque de Machine Learning- Visualización en Python.md`: descripción del proyecto.
 - `Handball_W_InternationalResults_with_Winner.csv`: dataset utilizado.
 
