@@ -30,19 +30,21 @@ En este sentido, analizaremos con datos respaldatorios, las tendencias observada
 
 #### Este código realiza tres tareas principales sobre el dataset de partidos de handball femenino:
 
-1.	Carga del dataset
+1.	Carga del dataset centralizadamente:
 
 2.	Limpieza de nombres de columnas: Se eliminan espacios en blanco al inicio o final de los nombres de las columnas, lo que evita errores al acceder a ellas
 
 3.	Cálculo del equipo ganador: Se crea una nueva columna llamada Resultado Partido que indica el nombre del equipo que ganó el partido (según los goles) y si los goles fueron iguales se asigna "Empate".
 
 ```Phyton
+
+ruta_dataset = 'https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/main/Entrega%20proyecto%20final/dataset.csv'
+df = pd.read_csv('https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/main/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv')
+
+
 import pandas as pd
 import plotly.express as px
 import numpy as np
-
-
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 df.columns = df.columns.str.strip()
 
@@ -59,9 +61,6 @@ print (df.head())
 ```Phyton
 import pandas as pd
 import plotly.express as px
-
-# Cargar el archivo CSV
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
@@ -95,10 +94,6 @@ fig.show()
 ```Phyton
 import pandas as pd
 import plotly.express as px
-
-# Cargar el archivo CSV
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
 
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
@@ -142,10 +137,6 @@ Esto permite ver qué equipos dominan cada torneo
 import pandas as pd
 import plotly.express as px
 
-# Cargar el archivo CSV
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -178,9 +169,6 @@ fig.show()
 ```Phyton
 import pandas as pd
 
-# Cargar el archivo CSV
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
 # Diagnóstico de valores perdidos por columna
 missing_values = df.isnull().sum()
 
@@ -192,9 +180,6 @@ print(missing_values)
 #### Este código calcula qué equipo tiene la mejor tasa de victorias en cada torneo y muestra los resultados en una tabla.
 ```Phyton
 import pandas as pd
-
-# Cargar el dataset
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
@@ -236,9 +221,6 @@ print(best_per_tournament[['TournamentName', 'WinningTeam', 'WinRate']])
 ```Phyton
 import pandas as pd
 import plotly.express as px
-
-# Cargar el archivo CSV
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
@@ -289,9 +271,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.figure_factory as ff
 
-# Cargar dataset
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -339,9 +318,6 @@ Tambien evita errores en modelos predictivos que no aceptan valores nulos y mejo
 ```Phyton
 import pandas as pd
 
-# Cargar dataset
-df = pd.read_csv ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
 # Eliminar duplicados
 df = df.drop_duplicates()
 
@@ -359,9 +335,6 @@ df.to_csv("Handball_W_InternationalResults_clean.csv", index=False)
 
 import pandas as pd
 from sklearn.impute import SimpleImputer
-
-# Cargar dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Identificar columnas
 numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
@@ -388,9 +361,6 @@ El gráfico muestra la relación entre los goles anotados por el Equipo A y el E
 import pandas as pd
 import plotly.express as px
 
-# Cargar el dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-
 # Limpiar nombres de columnas
 df.columns = df.columns.str.strip()
 
@@ -415,8 +385,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
-# Cargar dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 df['TotalGoals'] = df['ScoreA'] + df['ScoreB']
 
 # Variables
@@ -455,10 +423,6 @@ print("Predicción WorldChampionship 2025:", pred_example)
 import pandas as pd
 import statsmodels.api as sm
 
-# Cargar dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df['TotalGoals'] = df['ScoreA'] + df['ScoreB']
-
 # Modelo simple
 X_simple = sm.add_constant(df['year'].astype(float))
 y = df['TotalGoals'].astype(float)
@@ -487,10 +451,6 @@ import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-# Cargar datos
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
 
 # Crear variable dependiente y predictoras
 # Usamos ScoreA como dependiente y ScoreB + year como predictoras
@@ -538,10 +498,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
 import plotly.express as px
 
-# Cargar el dataset
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
-
 # Eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
 df = df.dropna()
@@ -575,6 +531,7 @@ print(importance_df)
 fig = px.bar(importance_df, x='Variable', y='Importancia',
              title='Importancia de Variables (Random Forest)', text='Importancia')
 fig.show()
+
 ```
 
 
@@ -582,10 +539,6 @@ fig.show()
 ```Phyton
 import pandas as pd
 import plotly.express as px
-
-# Cargar el dataset
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
 
 # Crear variable objetivo: 1 si TeamA gana, 0 si no
 df['WinA'] = (df['ScoreA'] > df['ScoreB']).astype(int)
@@ -619,9 +572,6 @@ Prueba (Test): Se usa para evaluar el rendimiento final del modelo en datos no v
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# Cargar el dataset
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
 
 # Crear variable objetivo: 1 si TeamA gana, 0 si no
 df['WinA'] = (df['ScoreA'] > df['ScoreB']).astype(int)
@@ -655,12 +605,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
-# Cargar el dataset
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
 
 # Eliminar columnas irrelevantes y manejar valores nulos
-df = df.drop(columns=['Date'])
+# df = df.drop(columns=['Date'])
 df = df.dropna()
 
 # Definir variable objetivo y predictoras
@@ -702,7 +649,6 @@ print(f"Test -> R²: {r2_test:.4f}, RMSE: {rmse_test:.4f}")
 
 
 
-
 #### Aqui buscamos predecir los goles del equipo A (ScoreA) y evalúa el modelo con tres métricas:
 
 R² : variabilidad de los datos.
@@ -719,8 +665,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
-# Cargar el dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
@@ -776,10 +720,6 @@ from sklearn.metrics import r2_score, mean_squared_error
 import numpy as np
 import plotly.express as px
 
-# Cargar el dataset
-file_path = ("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
-df = pd.read_csv(file_path)
-
 # Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
 df = df.dropna()
@@ -807,9 +747,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_absolute_error
-
-# Cargar el dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # Filtrar solo partidos del torneo World Championship
 df_wc = df[df['TournamentName'] == 'WorldChampionship']
@@ -870,9 +807,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.feature_selection import SelectKBest, f_regression
 import plotly.express as px
-
-# 1. Cargar el dataset
-df = pd.read_csv("https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/Reentrega-proyecto-final/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv")
 
 # 2. Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date', 'Sex'])  # Excluimos 'Sex'
