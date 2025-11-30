@@ -79,25 +79,39 @@ from sklearn.impute import SimpleImputer
 import plotly.figure_factory as ff
 
 
-ruta_dataset = 'https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/main/Entrega%20proyecto%20final/dataset.csv'
-df = pd.read_csv('https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/main/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv')
+ruta_dataset = 'https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/main/Handball_W_InternationalResults_with_Winner.csv'
+df = pd.read_csv('https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/main/Handball_W_InternationalResults_with_Winner.csv')
 
-
-import pandas as pd
-import plotly.express as px
-import numpy as np
-
-df.columns = df.columns.str.strip()
-
-# Agregar la columna 'Resultado Partido' con el nombre del equipo ganador
-df["Resultado Partido"] = np.where(df["ScoreA"] > df["ScoreB"], df["TeamA"],np.where(df["ScoreA"] < df["ScoreB"], df["TeamB"], "Empate"))
-
-
-print (df.head())
 ```
 
 
+
+```Phyton
+**Este código realiza tres tareas principales sobre el dataset de partidos de handball femenino:**
+
+1.	Carga del dataset
+
+2.	Limpieza de nombres de columnas: Se eliminan espacios en blanco al inicio o final de los nombres de las columnas, lo que evita errores al acceder a ellas
+
+3.	Cálculo del equipo ganador: Se crea una nueva columna llamada Resultado Partido que indica el nombre del equipo que ganó el partido (según los goles) y si los goles fueron iguales se asigna "Empate".
+
+```
+
+```Phyton
+# Limpieza de columnas
+df.columns = df.columns.str.strip()
+
+# Agregar columna 'Resultado Partido'
+df["Resultado Partido"] = np.where(df["ScoreA"] > df["ScoreB"], df["TeamA"],
+                                   np.where(df["ScoreA"] < df["ScoreB"], df["TeamB"], "Empate"))
+
+# Vista previa
+display(df.head())
+
+
 #### Este código realiza un análisis para mostrar qué equipos anotaron más goles en partidos internacionales de handball femenino entre 2010 y 2023
+```
+
 
 ```Phyton
 # Limpiar los nombres de las columnas
