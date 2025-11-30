@@ -898,6 +898,5 @@ ScoreB (goles del equipo rival) es el predictor más influyente. Factores como t
 ## 📁 Estructura del proyecto
 
 - `ProyectoParteIII+ROSALES.ipynb`: notebook principal con análisis y visualizaciones (https://colab.research.google.com/github/ange86rosales-oss/Angelina_Rosales/blob/main/proyectoparteiii_rosales.ipynb)
-- `Modelado Predictivo-Un Enfoque de Machine Learning- Visualización en Python.md`: descripción del proyecto.
 - `Handball_W_InternationalResults_with_Winner.csv`: dataset utilizado.
 
