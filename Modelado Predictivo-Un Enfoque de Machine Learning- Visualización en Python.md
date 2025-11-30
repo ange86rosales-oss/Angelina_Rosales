@@ -1,4 +1,6 @@
- # Modelado predictivo de la performance de las selecciones internacionales de handball femenino: Un enfoque de machine learning para analizar la predictibilidad de la próxima selección triunfadora del mundial 2025.
+# Abstract
+ 
+ ## Modelado predictivo de la performance de las selecciones internacionales de handball femenino: Un enfoque de machine learning para analizar la predictibilidad de la próxima selección triunfadora del mundial 2025.
 
 ## 📘 Contexto
 
@@ -10,10 +12,31 @@ A lo largo de estos años, el deporte se volvió más global. Cuba, por ejemplo,
 Cada torneo, cada medalla, cada partido disputado en estos quince años ha sido parte de una narrativa que habla de esfuerzo, evolución y pasión. El handball femenino mundial se ha convertido en un espectáculo de alto nivel, donde la técnica, la táctica y el corazón se combinan para ofrecer historias inolvidables. 
 
 
-## 🎯 Objetivo e hipótesis del proyecto
+## 🎯 Objetivo
 
-Este estudio desarrolla un framework predictivo integral para analizar los proximos resultados de partidos internacionales de handball femenino, para el cual analizaremos los partidos disputados desde 2010 al 2023 en los que se han disputado más de 2800 partidos oficiales lo que muestra una actividad constante y creciente lo que nos permite ver cómo el handball femenino ha crecido en volumen, diversidad y competitividad. Europa sigue siendo el núcleo, pero otras regiones están pisando fuerte y ganando terreno. 
-Dicho todo lo anterior, analizaremos las tendencias observadas en los torneos más importantes
+Este estudio desarrolla un framework predictivo integral para analizar los determinantes del rendimiento competitivo en selecciones internacionales de handball femenino, en donde se utilizó métricas estructuradas de resultados históricos y atributos contextuales de torneos. Se utilizan técnicas de machine learning para decodificar la interacción entre variables cuantitativas como goles, diferencias de goles y año . El objetivo final es anticipar tendencias competitivas y estimar la probabilidad de éxito en el Mundial 2025, contribuyendo a la comprensión de factores clave que influyen al ganador. 
+
+## 📘 Metodología
+
+Se trabajó sobre un dataset histórico que comprende más de 2.800 partidos oficiales disputados entre 2010 y 2023, incluyendo información sobre equipos, goles anotados y año. El proyecto se estructura en tres etapas: (1) limpieza y preparación de datos, (2) análisis exploratorio con visualizaciones interactivas para identificar patrones de anotación, distribución de victorias y diferencias de goles, y (3) modelado predictivo mediante algoritmos de Machine Learning (Regresión Lineal y Random Forest) para estimar métricas de rendimiento ofensivo.
+
+## 🎯 Hipótesis
+
+### Hipótesis 1: “Supremacía Europea”
+Las selecciones europeas presentan sistemáticamente mayores tasas de victoria y diferencias de goles en torneos internacionales, lo que las posiciona como principales candidatas al título en el Mundial 2025.
+Variables: WinningTeam, TournamentName, GoalDifference.
+Análisis: Conteo de victorias por región, boxplots de diferencias de goles, ranking global
+
+### Hipótesis 2: “Hipótesis Temporal de Tendencia Competitiva”
+La competitividad global ha aumentado en el tiempo, reduciendo la brecha entre equipos europeos y no europeos desde 2010.
+Variables: year, WinningTeam, GoalDifference.
+Análisis: Tendencia temporal de victorias por región, evolución de diferencias de goles.
+
+### Hipótesis 3: “Hipótesis de Influencia del Rival”
+La cantidad de goles anotados por el equipo A (ScoreA) está fuertemente influenciada por los goles del equipo rival (ScoreB), reflejando partidos más equilibrados en torneos recientes.
+Variables: ScoreA, ScoreB.
+Análisis: Correlación, regresión OLS, importancia de variables en Random Forest.
+
 
 En este sentido, analizaremos con datos respaldatorios, las tendencias observadas en los torneos más importantes a partir del 2024 y veremos si Europa seguirá  manteniendo su supremacia hegemónica de cara al mundial a disputarse en noviembre 2025.
 
@@ -37,6 +60,24 @@ En este sentido, analizaremos con datos respaldatorios, las tendencias observada
 3.	Cálculo del equipo ganador: Se crea una nueva columna llamada Resultado Partido que indica el nombre del equipo que ganó el partido (según los goles) y si los goles fueron iguales se asigna "Empate".
 
 ```Phyton
+import pandas as pd
+import plotly.express as px
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.feature_selection import SelectKBest, f_regression
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import r2_score, mean_squared_error
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+from sklearn.impute import SimpleImputer
+import plotly.figure_factory as ff
+
 
 ruta_dataset = 'https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/main/Entrega%20proyecto%20final/dataset.csv'
 df = pd.read_csv('https://raw.githubusercontent.com/ange86rosales-oss/Angelina_Rosales/refs/heads/main/Entrega%20proyecto%20final/Handball_W_InternationalResults_with_Winner.csv')
@@ -59,9 +100,6 @@ print (df.head())
 #### Este código realiza un análisis para mostrar qué equipos anotaron más goles en partidos internacionales de handball femenino entre 2010 y 2023
 
 ```Phyton
-import pandas as pd
-import plotly.express as px
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -92,8 +130,6 @@ fig.show()
 
 #### Este código genera un boxplot que muestra la distribución de la diferencia de goles en los partidos ganados por los 10 equipos con más victorias del 2010 al 2023
 ```Phyton
-import pandas as pd
-import plotly.express as px
 
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
@@ -134,9 +170,6 @@ fig.show()
 
 Esto permite ver qué equipos dominan cada torneo
 ```Phyton
-import pandas as pd
-import plotly.express as px
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -167,8 +200,6 @@ fig.show()
 
 #### Este código realiza un diagnóstico de valores faltantes (nulos) en cada columna del dataset
 ```Phyton
-import pandas as pd
-
 # Diagnóstico de valores perdidos por columna
 missing_values = df.isnull().sum()
 
@@ -179,8 +210,6 @@ print(missing_values)
 
 #### Este código calcula qué equipo tiene la mejor tasa de victorias en cada torneo y muestra los resultados en una tabla.
 ```Phyton
-import pandas as pd
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -219,9 +248,6 @@ print(best_per_tournament[['TournamentName', 'WinningTeam', 'WinRate']])
 
 - El segundo gráfico muestra qué equipos son globalmente más dominantes en la historia del dataset.
 ```Phyton
-import pandas as pd
-import plotly.express as px
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -267,10 +293,6 @@ fig2.show()
 - Y por útimo la correlación entre goles, es decir, los partidos son palo y palo o desparejos?
 
 ```Phyton
-import pandas as pd
-import plotly.express as px
-import plotly.figure_factory as ff
-
 # Limpiar los nombres de las columnas
 df.columns = df.columns.str.strip()
 
@@ -316,7 +338,6 @@ fig.show()
 #### Aqui eliminamos datos que pueden distorsionar análisis estadísticos y modelos predictivos, la finalidad es mejorar la calidad del dataset para obtener resultados más confiables
 Tambien evita errores en modelos predictivos que no aceptan valores nulos y mejora la calidad del dataset para análisis estadísticos.
 ```Phyton
-import pandas as pd
 
 # Eliminar duplicados
 df = df.drop_duplicates()
@@ -358,9 +379,6 @@ df.to_csv("Handball_W_InternationalResults_imputed.csv", index=False)
 El gráfico muestra la relación entre los goles anotados por el Equipo A y el Equipo B en cada partido. La línea de tendencia (OLS) indica cuando un equipo anota , el otro equipo tiende a anotar más goles. Esto sugiere que los partidos suelen ser competitivos, con ambos equipos anotando en rangos similares.
 
 ```Phyton
-import pandas as pd
-import plotly.express as px
-
 # Limpiar nombres de columnas
 df.columns = df.columns.str.strip()
 
@@ -380,11 +398,6 @@ fig.show()
 
 #### Aqui realizamos un análisis predictivo utilizando regresión lineal para estimar la cantidad total de goles anotados basándose en el año y el nombre del torneo.
 ```Phyton
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-
 df['TotalGoals'] = df['ScoreA'] + df['ScoreB']
 
 # Variables
@@ -420,9 +433,6 @@ print("Predicción WorldChampionship 2025:", pred_example)
 
 #### Aqui realizamos un análisis de regresión lineal utilizando la librería statsmodels para entender cómo el año y el tipo de torneo influyen en la cantidad total de goles anotados.
 ```Phyton
-import pandas as pd
-import statsmodels.api as sm
-
 # Modelo simple
 X_simple = sm.add_constant(df['year'].astype(float))
 y = df['TotalGoals'].astype(float)
@@ -447,11 +457,6 @@ prediction = model_multiple.predict(pred_data)[0]
 
 #### Aqui intentamos predecir los goles anotados por el equipo A (ScoreA) en función de los goles recibidos (ScoreB) y el año del partido (year) se hace mediante una regresión lineal ordinaria (OLS)
 ```Phyton
-import pandas as pd
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 # Crear variable dependiente y predictoras
 # Usamos ScoreA como dependiente y ScoreB + year como predictoras
 X = df[["ScoreB", "year"]]
@@ -493,11 +498,6 @@ plt.show()
 
 #### Aqui queremos determinar qué variables tienen mayor influencia en la cantidad de goles anotados por el equipo A y visualizar la importancia relativa de cada variable.
 ```Phyton
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
-import plotly.express as px
-
 # Eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
 df = df.dropna()
@@ -537,8 +537,6 @@ fig.show()
 
 #### Aqui se pretende identificar selecciones dominantes y evaluar rendimientos históricos, preparación de partidos y análisis estratégico.
 ```Phyton
-import pandas as pd
-import plotly.express as px
 
 # Crear variable objetivo: 1 si TeamA gana, 0 si no
 df['WinA'] = (df['ScoreA'] > df['ScoreB']).astype(int)
@@ -569,10 +567,6 @@ Validación (Validation): Se usa para ajustar hiperparámetros y evitar sobreaju
 Prueba (Test): Se usa para evaluar el rendimiento final del modelo en datos no vistos.
 
 ```Phyton
-import pandas as pd
-from sklearn.model_selection import train_test_split
-
-
 # Crear variable objetivo: 1 si TeamA gana, 0 si no
 df['WinA'] = (df['ScoreA'] > df['ScoreB']).astype(int)
 
@@ -599,12 +593,6 @@ print(f"Test: {X_test.shape[0]} filas")
 
 #### Aqui buscamos predecir los goles anotados por el equipo A (ScoreA), y evalúa su rendimiento en conjuntos de validación y prueba con Métricas de evaluación (R²) y Error promedio en la predicción (RMSE)
 ```Phyton
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import r2_score, mean_squared_error
-from sklearn.preprocessing import LabelEncoder
-import numpy as np
 
 # Eliminar columnas irrelevantes y manejar valores nulos
 # df = df.drop(columns=['Date'])
@@ -658,13 +646,6 @@ RMSE: indica cuánto se desvía la predicción en la misma escala que los goles.
 MAE : error absoluto promedio.
 
 ```Phyton
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
-
 
 # Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
@@ -712,14 +693,6 @@ print(f"Test -> R²: {r2_test:.4f}, RMSE: {rmse_test:.4f}, MAE: {mae_test:.4f}")
 
 #### Aqui dividimos el dataset en tres conjuntos para entrenar el modelo en datos conocidos, validar para ajustar hiperparámetros y evitar sobreajuste y para medir el rendimiento en datos no vistos.
 ```Phyton
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import r2_score, mean_squared_error
-import numpy as np
-import plotly.express as px
-
 # Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date'])
 df = df.dropna()
@@ -741,13 +714,6 @@ X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.50, 
 
 #### Aqui lo que se pretende estimar es la tendencia histórica y proyectar qué equipos podrían dominar en el futuro.
 ```Phyton
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import mean_absolute_error
-
 # Filtrar solo partidos del torneo World Championship
 df_wc = df[df['TournamentName'] == 'WorldChampionship']
 
@@ -799,14 +765,6 @@ print(f"Equipo: {best_team['TeamName']}, Victorias proyectadas: {best_team['Pred
 #### Aqui lo que se intenta es estimar goles futuros en función de características históricas, analizar y saber qué factores influyen más (torneo, año, rival), ajustar variables y parámetros para mejorar la precisión y facilitar la interpretación de resultados para informes o presentaciones.
 
 ```Phyton
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
-from sklearn.feature_selection import SelectKBest, f_regression
-import plotly.express as px
 
 # 2. Preprocesamiento: eliminar columnas irrelevantes y manejar valores nulos
 df = df.drop(columns=['Date', 'Sex'])  # Excluimos 'Sex'
@@ -869,16 +827,28 @@ fig.show()
 
 ```
 
-##  ✅ Conclusiones y recomendaciones 
+## 📌Conclusiones y recomendaciones:
+
+
+#### Hipótesis 1: “Supremacía Europea”
+<ins>Conclusión</ins>: El análisis histórico confirma la supremacía europea en torneos internacionales. Las visualizaciones (ranking global y treemap por torneo) muestran que selecciones como Noruega, Francia y Dinamarca concentran la mayoría de victorias y títulos. Esta tendencia se mantiene estable en el período 2010–2023, lo que respalda la hipótesis.
+
+#### Hipótesis 2: “Tendencia Temporal de Competitividad contra la supremacia europea”
+<ins>Conclusión</ins>: La evolución temporal indica un crecimiento gradual en la participación y desempeño de equipos no europeos, aunque la brecha sigue siendo significativa. Si bien se observan casos puntuales de éxito (ej. Brasil 2013), los equipos europeos continúan dominando las fases decisivas. Esto sugiere que la competitividad global aumenta, pero no lo suficiente para alterar la hegemonía europea.
+
+#### Hipótesis 3: “Influencia del Rival”
+<ins>Conclusión</ins>: Los modelos predictivos (OLS y Random Forest) confirman que la variable ScoreB es el predictor más influyente sobre ScoreA. La correlación positiva y la línea de tendencia en el scatter plot indican que los partidos suelen ser equilibrados: cuando un equipo anota más, el rival también incrementa su anotación. Esto valida la hipótesis y refleja la dinámica competitiva del handball femenino.
 
 #### Supremacía europea confirmada en los datos
 
-El análisis realizado sobre el dataset histórico de resultados internacionales de handball femenino confirma que Europa mantiene su supremacía en este deporte. Los equipos europeos como Noruega, Francia, Dinamarca, Rusia y Hungría aparecen de manera consistente entre los más exitosos en torneos globales, especialmente en el World Championship y el European Championship.
-En los rankings y proyecciones realizadas con Random Forest, Noruega principalmente aparecen entre los equipos con mayor número de victorias proyectadas para 2025.
+El análisis realizado sobre el dataset histórico de resultados internacionales de handball femenino confirma que Europa mantiene su supremacía en este deporte. Los equipos europeos como Noruega, Francia, Dinamarca, Rusia y Hungría aparecen de manera consistente entre los más exitosos en torneos globales, especialmente en el World Championship.
+Los datos históricos muestran dominio europeo en títulos y victorias, las proyecciones del modelo para 2025 ubican a equipos europeos en la cima ya que la tendencia se mantiene estable en los últimos 20 años según el dataset. No obstante, se observa crecimiento en otras regiones, lo que sugiere que, aunque la supremacía europea se mantiene, la competencia global podría intensificarse en el futuro ya que se evidencia un marcado crecimiento en otras regiones por ejemplo Angola en África y  Brasil en América
+
 
 #### Modelos predictivos y métricas
 
 El modelo Random Forest Regressor aplicado sobre las variables del dataset (equipos, torneo, año, goles del rival) logró un R² entre 0.43 y 0.53, con MAE ≈ 4 goles. Esto indica que el modelo captura tendencias históricas, aunque no predice con alta precisión debido a la falta de variables contextuales (ranking, localía, fase del torneo).
+En los rankings y proyecciones realizadas con Random Forest, Noruega principalmente aparecen entre los equipos con mayor número de victorias proyectadas para 2025.
 
 #### Selección de características (SelectKBest)
 
@@ -887,15 +857,9 @@ TeamA, TeamB, ScoreB, TournamentName, year, Venue, WinningTeam.
 La columna Sex no aportó valor predictivo, lo que confirma que el género no influye en este contexto porque todos los partidos son femeninos.
 
 
-
 #### Importancia de variables en Random Forest
 
 ScoreB (goles del equipo rival) es el predictor más influyente. Factores como torneo y año también tienen peso, lo que refleja que el contexto histórico y competitivo importa.
-
-#### 📌Mi hipótesis “Europa seguirá con su supremacía” se sostiene porque:
-
-Los datos históricos muestran dominio europeo en títulos y victorias, las proyecciones del modelo para 2025 ubican a equipos europeos en la cima.
-La tendencia se mantiene estable en los últimos 20 años según el dataset. No obstante, se observa crecimiento en otras regiones, lo que sugiere que, aunque la supremacía europea se mantiene, la competencia global podría intensificarse en el futuro ya que se evidencia un marcado crecimiento en otras regiones por ejemplo Angola en África y  Brasil en América
 
 
 #### Se podría agregar:
