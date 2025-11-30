@@ -53,7 +53,7 @@ En este sentido, analizaremos con datos respaldatorios, las tendencias observada
 
 #### Este código realiza tres tareas principales sobre el dataset de partidos de handball femenino:
 
-1.	Carga del dataset centralizadamente:
+1.	Carga del dataset y librerias centralizadamente:
 
 2.	Limpieza de nombres de columnas: Se eliminan espacios en blanco al inicio o final de los nombres de las columnas, lo que evita errores al acceder a ellas
 
