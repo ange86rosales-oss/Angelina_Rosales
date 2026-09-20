@@ -1,8 +1,6 @@
 # Pipeline Base de Entrenamiento y Validación — Deep Learning
 
-Checkpoint 1 del Proyecto Final (Data Science III). Infraestructura base
-para entrenar y validar un clasificador con PyTorch, siguiendo el ciclo
-completo: **forward → loss → zero_grad → backward → step**, con
+Infraestructura base para entrenar y validar un clasificador con PyTorch, siguiendo el ciclo completo: **forward → loss → zero_grad → backward → step**, con
 tracking de métricas y validación en datos no vistos.
 
 ## Estructura del repositorio
